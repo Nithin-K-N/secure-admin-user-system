@@ -11,14 +11,14 @@ import java.util.List;
 
 // store data of security identity for ONE request from JWT filter in security-filter-chain
 // i.e, authenticated identity of a request for controller & services
-public class UserPrinciple implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
-    private final String userId;
+    private final Long userId;
     private final String username;
     private final Roles role;
     private final UserStates state;
 
-    public UserPrinciple(String userId, String username, Roles role, UserStates state) {
+    public UserPrincipal(Long userId, String username, Roles role, UserStates state) {
         this.userId = userId;
         this.username = username;
         this.role = role;
@@ -41,7 +41,7 @@ public class UserPrinciple implements UserDetails {
         return username;
     }
 
-    public String getUserId(){ return userId; }
+    public Long getUserId(){ return userId; }
 
     public UserStates getUserState(){ return state; }
 
