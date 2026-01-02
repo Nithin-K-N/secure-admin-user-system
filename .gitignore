@@ -1,0 +1,53 @@
+# --- Node / Next.js / Tailwind ---
+node_modules/
+.next/
+out/
+build/
+.env*.local
+.vercel
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# --- Java / Spring Boot (Maven/Gradle) ---
+target/
+build/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.mvn/wrapper/maven-wrapper.jar
+
+# --- JPA / Hibernate / Liquibase ---
+# Ignore generated QueryDSL classes if applicable
+/src/main/generated/
+# Liquibase update logs
+liquibase.log
+
+# --- IDEs / Editors ---
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+.DS_Store
+
+# --- Testing / JMeter ---
+# JMeter logs and reports
+jmeter.log
+/bin/*.jtl
+/bin/reports/
+
+# --- Kafka ---
+# Ignore local Kafka data/logs if running locally outside Docker
+/data/kafka/
+/data/zookeeper/
+
+# --- Docker ---
+.docker/
+# If you use docker-compose and have local data volumes
+/docker-data/
