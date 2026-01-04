@@ -1,4 +1,4 @@
-package com.nithin.secure_user_platform.auth.record;
+package com.nithin.secure_user_platform.auth.domain.record;
 
 public record RegisterRequestBody(
         String username,

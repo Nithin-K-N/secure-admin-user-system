@@ -1,21 +1,16 @@
 package com.nithin.secure_user_platform.admin.controller;
 
+import com.nithin.secure_user_platform.admin.domain.records.UserIdentificationRequestBody;
 import com.nithin.secure_user_platform.admin.service.AdminService;
 import com.nithin.secure_user_platform.exception.customExceptions.UserNotFoundException;
-import com.nithin.secure_user_platform.user.domain.User;
-import com.nithin.secure_user_platform.utility.records.ErrorResponseBody;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
-@RestController
-@RequestMapping("admin")
+@RestController @RequestMapping("admin")
+@SecurityRequirement(name = "bearerAuth") // for swagger
 @RequiredArgsConstructor
 public class AdminController {
 
@@ -24,7 +19,38 @@ public class AdminController {
     @GetMapping("allUsers")
     public ResponseEntity<?> getAllUsers() throws UserNotFoundException {
 
-            List<User> userList = adminService.getAllUser();
-            return ResponseEntity.ok(userList);
+            return ResponseEntity.ok(adminService.getAllUser());
+    }
+
+    @PostMapping("banUser")
+    public ResponseEntity<?> banUser(
+            @RequestBody UserIdentificationRequestBody requestBody
+    ) throws UserNotFoundException {
+
+        return ResponseEntity.ok(adminService.banUser(requestBody));
+    }
+
+    @PostMapping("unbanUser")
+    public ResponseEntity<?> unbanUser(
+            @RequestBody UserIdentificationRequestBody requestBody
+    ) throws UserNotFoundException {
+
+        return ResponseEntity.ok(adminService.unbanUser(requestBody));
+    }
+
+    @PostMapping("promoteUser")
+    public ResponseEntity<?> promoteUser(
+            @RequestBody UserIdentificationRequestBody requestBody
+    ) throws UserNotFoundException {
+
+        return ResponseEntity.ok(adminService.promoteUser(requestBody));
+    }
+
+    @PostMapping("demoteUser")
+    public ResponseEntity<?> demoteUser(
+            @RequestBody UserIdentificationRequestBody requestBody
+    ) throws UserNotFoundException {
+
+        return ResponseEntity.ok(adminService.demoteUser(requestBody));
     }
 }

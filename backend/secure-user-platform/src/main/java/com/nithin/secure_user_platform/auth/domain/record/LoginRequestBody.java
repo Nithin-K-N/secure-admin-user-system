@@ -1,4 +1,4 @@
-package com.nithin.secure_user_platform.auth.record;
+package com.nithin.secure_user_platform.auth.domain.record;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

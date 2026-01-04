@@ -1,7 +1,7 @@
 package com.nithin.secure_user_platform.utility.sharedMethods;
 
-import com.nithin.secure_user_platform.user.domain.User;
-import com.nithin.secure_user_platform.user.dto.UserDto;
+import com.nithin.secure_user_platform.user.domain.entities.User;
+import com.nithin.secure_user_platform.user.domain.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 @Component

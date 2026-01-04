@@ -1,4 +1,4 @@
-package com.nithin.secure_user_platform.user.domain;
+package com.nithin.secure_user_platform.user.domain.entities;
 
 import com.nithin.secure_user_platform.utility.enums.Roles;
 import com.nithin.secure_user_platform.utility.enums.UserStates;
@@ -18,9 +18,11 @@ public class User {
     @Column(nullable = false, unique = true, updatable = false, length = 50)
     private String username;
 
+    @Setter
     @Column(nullable = false)
     private String firstName;
 
+    @Setter
     @Column
     private String lastName;
 
@@ -28,6 +30,7 @@ public class User {
     private String email;
 
     // Security
+    @Setter
     @Column(nullable = false)
     private String passwordHash;
 
@@ -65,5 +68,8 @@ public class User {
     public void activate() {
         this.state = UserStates.ACTIVE;
     }
+
+    public void promote(){ this.role = Roles.ADMIN; }
+    public void demote(){ this.role = Roles.USER; }
 
 }

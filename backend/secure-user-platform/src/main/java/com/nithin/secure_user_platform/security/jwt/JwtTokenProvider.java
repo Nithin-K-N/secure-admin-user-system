@@ -1,6 +1,6 @@
 package com.nithin.secure_user_platform.security.jwt;
 
-import com.nithin.secure_user_platform.user.domain.User;
+import com.nithin.secure_user_platform.user.domain.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;

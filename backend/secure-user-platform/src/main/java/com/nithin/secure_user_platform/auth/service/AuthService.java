@@ -1,12 +1,12 @@
 package com.nithin.secure_user_platform.auth.service;
 
-import com.nithin.secure_user_platform.auth.record.LoginRequestBody;
-import com.nithin.secure_user_platform.auth.record.RegisterRequestBody;
+import com.nithin.secure_user_platform.auth.domain.record.LoginRequestBody;
+import com.nithin.secure_user_platform.auth.domain.record.RegisterRequestBody;
 import com.nithin.secure_user_platform.exception.customExceptions.UserAlreadyExistsException;
 import com.nithin.secure_user_platform.exception.customExceptions.UserNotFoundException;
 import com.nithin.secure_user_platform.security.jwt.JwtTokenProvider;
-import com.nithin.secure_user_platform.user.domain.User;
-import com.nithin.secure_user_platform.user.dto.UserDto;
+import com.nithin.secure_user_platform.user.domain.entities.User;
+import com.nithin.secure_user_platform.user.domain.dto.UserDto;
 import com.nithin.secure_user_platform.user.repository.UserRepository;
 import com.nithin.secure_user_platform.utility.enums.Roles;
 import com.nithin.secure_user_platform.utility.enums.UserStates;
@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Service

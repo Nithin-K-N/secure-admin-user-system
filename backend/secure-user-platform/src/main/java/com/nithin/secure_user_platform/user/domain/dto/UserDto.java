@@ -1,4 +1,4 @@
-package com.nithin.secure_user_platform.user.dto;
+package com.nithin.secure_user_platform.user.domain.dto;
 
 import com.nithin.secure_user_platform.utility.enums.Roles;
 import com.nithin.secure_user_platform.utility.enums.UserStates;

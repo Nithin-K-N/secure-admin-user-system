@@ -1,7 +1,7 @@
 package com.nithin.secure_user_platform.auth.controller;
 
-import com.nithin.secure_user_platform.auth.record.LoginRequestBody;
-import com.nithin.secure_user_platform.auth.record.RegisterRequestBody;
+import com.nithin.secure_user_platform.auth.domain.record.LoginRequestBody;
+import com.nithin.secure_user_platform.auth.domain.record.RegisterRequestBody;
 import com.nithin.secure_user_platform.auth.service.AuthService;
 import com.nithin.secure_user_platform.exception.customExceptions.UserAlreadyExistsException;
 import com.nithin.secure_user_platform.exception.customExceptions.UserNotFoundException;
