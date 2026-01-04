@@ -25,4 +25,16 @@ public class GlobalExceptionHandler {
                 ),
                 HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<?> handleAllExceptions(Exception e, WebRequest request){
+        return new ResponseEntity<>(
+                new ErrorResponseBody(
+                        HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                        e.getMessage(),
+                        request.getDescription(false),
+                        LocalDateTime.now()
+                ),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

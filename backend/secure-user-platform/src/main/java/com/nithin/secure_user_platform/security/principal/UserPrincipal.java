@@ -1,8 +1,7 @@
 package com.nithin.secure_user_platform.security.principal;
 
-import com.nithin.secure_user_platform.utility.enums.Roles;
-import com.nithin.secure_user_platform.utility.enums.UserStates;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,23 +10,17 @@ import java.util.Collection;
 import java.util.List;
 
 @Getter
+@RequiredArgsConstructor
 public class UserPrincipal implements UserDetails {
 
     private final Long userId;
     private final String username;
-    private final Roles role;
-    private final UserStates state;
-    public UserPrincipal(Long userId, String username, Roles role, UserStates state) {
-        this.userId = userId;
-        this.username = username;
-        this.role = role;
-        this.state = state;
-    }
-
+    private final String role;
+    private final String state;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_"+role.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_"+role));
     }
 
     @Override

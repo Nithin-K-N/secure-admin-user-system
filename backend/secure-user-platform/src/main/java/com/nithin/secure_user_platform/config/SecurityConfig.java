@@ -1,6 +1,7 @@
 package com.nithin.secure_user_platform.config;
 
 import com.nithin.secure_user_platform.security.jwt.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -13,13 +14,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableMethodSecurity @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter){
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -29,8 +27,8 @@ public class SecurityConfig {
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth->
-                        auth.requestMatchers("**/auth**", "/error").permitAll()
-                            .requestMatchers("**/admin**").hasRole("ADMIN")
+                        auth.requestMatchers("/auth/**", "/error").permitAll()
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
                             .requestMatchers(
                                     "/v3/api-docs/**",
                                     "/v3/api-docs.yaml",

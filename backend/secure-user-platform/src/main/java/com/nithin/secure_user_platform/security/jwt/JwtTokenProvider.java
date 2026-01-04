@@ -22,7 +22,7 @@ public class JwtTokenProvider {
                 .claim("role", user.getRole().name())
                 .claim("state", user.getState().name())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()+36000))
+                .expiration(new Date(System.currentTimeMillis()+3600000))
                 .signWith(jwtKeyProvider.getKey())
                 .compact();
     }

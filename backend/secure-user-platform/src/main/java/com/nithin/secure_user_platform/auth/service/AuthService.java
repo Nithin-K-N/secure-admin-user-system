@@ -29,7 +29,7 @@ public class AuthService {
 
     public UserDto registerUser(RegisterRequestBody requestBody) throws UserAlreadyExistsException {
         Optional<User> user = userRepository.findByUsernameOrEmail(requestBody.username(), requestBody.email());
-        if(user.isPresent()) throw new UserAlreadyExistsException("Email already taken");
+        if(user.isPresent()) throw new UserAlreadyExistsException("Email or username already taken");
 
         User savedUser = userRepository.save(
                 new User(
@@ -52,7 +52,7 @@ public class AuthService {
     public String login(LoginRequestBody requestBody) throws UserNotFoundException {
         Optional<User> user = userRepository.findByUsernameOrEmail(requestBody.identifier(), requestBody.identifier());
 
-        if(user.isPresent() && Objects.equals(user.get().getPasswordHash(), passwordEncoder.encode(requestBody.password()))){
+        if(user.isPresent() && passwordEncoder.matches(requestBody.password(), user.get().getPasswordHash())){
             return jwtTokenProvider.generateJwtToken(user.get());
         } else throw new UserNotFoundException("Invalid credentials or user doesn't exist");
     }
