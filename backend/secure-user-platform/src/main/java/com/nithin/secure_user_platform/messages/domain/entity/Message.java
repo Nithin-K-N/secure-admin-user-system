@@ -1,5 +1,6 @@
 package com.nithin.secure_user_platform.messages.domain.entity;
 
+import com.nithin.secure_user_platform.user.domain.entities.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,12 +15,20 @@ public class Message {
 
     @Column(nullable = false, updatable = false)
     private Long senderId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "sender_id", nullable = false, updatable = false)
+//    private User sender;
 
     @Column(nullable = false, updatable = false)
     private Long receiverId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "receiver_id", nullable = false, updatable = false)
+//    private User receiver;
 
     @Column(nullable = false, updatable = false)
     private String content;
+
+//    private Boolean isRead;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
