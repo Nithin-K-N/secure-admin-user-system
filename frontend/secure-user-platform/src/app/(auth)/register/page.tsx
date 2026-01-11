@@ -40,10 +40,10 @@ function Page() {
 
     return (
         <div className="flex flex-col h-full w-full items-center justify-center">
-            <h2 className="flex bg-amber-50 text-black p-2 mb-4 rounded-md">
+            <h2 className="flex bg-amber-50 text-black p-2 m-2 rounded-md">
                 Register Page
             </h2>
-            <form className="flex flex-col bg-amber-50 text-black items-center ">
+            <form className="flex flex-col bg-amber-50 text-black items-center p-2 m-2 rounded-md">
                 <div  className="grid grid-cols-2 p-2 space-x-2">
                     {Object.keys(registerForm).map(key => (
                         <div key={key}>
@@ -61,7 +61,7 @@ function Page() {
                     ))}
                 </div>
                 <button 
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" 
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded cursor-pointer" 
                     type="button" 
                     onClick={handleRegister}
                 >

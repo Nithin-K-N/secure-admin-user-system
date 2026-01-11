@@ -1,5 +1,6 @@
 "use client";
 
+import { decodeJwt } from '@/lib/utils/jwt';
 import { loginApi } from '@/services/auth.service';
 import { useAuthStore } from '@/store/auth.store';
 import { useRouter } from 'next/navigation';
@@ -23,7 +24,8 @@ function Page() {
                 alert("Invalid login response");
                 return;
             }
-            login(token, "USER");
+
+            login(token, decodeJwt(token)?.role || 'USER');
             alert("Login successful");
             router.push('/user')
         }catch (error) {
@@ -33,9 +35,13 @@ function Page() {
     }
 
   return (
-    <div className="flex bg-amber-50 text-black h-full w-full items-center justify-center">
-      <h2>Login Page</h2>
-      <form>
+    <div className="flex flex-col text-black h-full w-full items-center justify-center">
+      <h2
+        className='bg-amber-50 text-black m-2 p-2 rounded-md'
+      >
+        Login Page
+      </h2>
+      <form className='flex flex-col bg-white space-y-2 m-2 p-4 rounded-md'>
         <input
           type="text"
           placeholder="Identifier"
@@ -49,7 +55,13 @@ function Page() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="button" onClick={()=>handleLogin()}>Login</button>
+        <button 
+          type="button" 
+          className='bg-blue-500 text-white rounded-md p-2'
+          onClick={()=>handleLogin()}
+        >
+          Login
+        </button>
       </form>
     </div>
   )
