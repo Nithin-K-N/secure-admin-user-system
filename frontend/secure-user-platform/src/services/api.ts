@@ -15,7 +15,8 @@ export async function apiFetch(
 
     const response = await fetch(`${BASE_URL}${endpoint}`, {
         ...options,
-        headers
+        headers,
+        credentials: 'include' // Include credentials for CORS
     });
 
     if (response.status === 401) {
