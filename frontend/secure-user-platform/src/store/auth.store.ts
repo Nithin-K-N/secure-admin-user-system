@@ -13,7 +13,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => {
   const token =
     typeof window !== "undefined"
-      ? localStorage.getItem("token")
+      ? localStorage.getItem("authToken")
       : null;
 
   const decoded = token ? decodeJwt(token) : null;
@@ -24,7 +24,7 @@ export const useAuthStore = create<AuthState>((set) => {
 
     login: (token: string) => {
       const decoded = decodeJwt(token);
-      localStorage.setItem("token", token);
+      localStorage.setItem("authToken", token);
       set({
         token,
         role: decoded?.role ?? null,
@@ -32,7 +32,7 @@ export const useAuthStore = create<AuthState>((set) => {
     },
 
     logout: () => {
-      localStorage.removeItem("token");
+      localStorage.removeItem("authToken");
       set({ token: null, role: null });
     },
   };

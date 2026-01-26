@@ -25,9 +25,14 @@ function Page() {
                 return;
             }
 
-            login(token, decodeJwt(token)?.role || 'USER');
+            login(token, decodeJwt(token)?.role);
             alert("Login successful");
-            router.push('/user')
+
+            if(decodeJwt(token)?.role == "USER"){
+              router.push('/user')
+            } else if(decodeJwt(token)?.role == "ADMIN") {
+              router.push('/admin') 
+            } 
         }catch (error) {
             console.error("Login error:", error);
             alert("Login failed");
