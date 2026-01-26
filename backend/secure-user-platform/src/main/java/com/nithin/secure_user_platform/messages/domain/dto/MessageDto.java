@@ -1,12 +1,19 @@
 package com.nithin.secure_user_platform.messages.domain.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
-public record MessageDto(
-        Long id,
-        Long senderId,
-        Long receiverId,
-        String content,
-        LocalDateTime createdAt
-) {
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+public class MessageDto{
+    Long id;
+    Long senderId;
+    String senderUsername;
+    Long receiverId;
+    String receiverUsername;
+    String content;
+    LocalDateTime createdAt;
 }

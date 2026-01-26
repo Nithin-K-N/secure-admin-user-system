@@ -1,9 +1,11 @@
 package com.nithin.secure_user_platform.security.jwt;
 
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 @Getter
@@ -11,7 +13,8 @@ import java.security.Key;
 public class JwtKeyProvider {
 
     private final Key key;
-    public JwtKeyProvider(){
-        this.key = Jwts.SIG.HS256.key().build();
+
+    public JwtKeyProvider(@Value("${app.jwt.secret}") String secret) {
+        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 }

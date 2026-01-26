@@ -45,23 +45,11 @@ public class MessageService {
 
         Pageable pageable = PageRequest.of(page, size);
         return messageRepository
-                .findByReceiverIdOrderByCreatedAtDesc(user.getUserId(), pageable)
-                .map(this::messageToDto);
+                .findInboxWithUsernames(user.getUserId(), pageable);
     }
 
     public Page<MessageDto > getSent(UserPrincipal user, int page, int size){
         return  messageRepository
-                .findBySenderIdOrderByCreatedAtDesc(user.getUserId(), PageRequest.of(page, size))
-                .map(this::messageToDto);
-    }
-
-    private MessageDto messageToDto(Message message){
-        return new MessageDto(
-                message.getId(),
-                message.getSenderId(),
-                message.getReceiverId(),
-                message.getContent(),
-                message.getCreatedAt()
-        );
+                .findSentWithUsernames(user.getUserId(), PageRequest.of(page, size));
     }
 }
